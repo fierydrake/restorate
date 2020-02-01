@@ -44,25 +44,42 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate() {
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxVelocity, maxVelocity), rb.velocity.y);
+
+        // // old logic
+        // if (Math.Abs(rb.velocity.x) > 0.0f) {
+        //     if (!fixedMoveSoundOn && grounding.grounded) {
+        //         fixedMoveSoundOn = true;
+        //         Debug.Log("turning sound ONNNNN");
+        //         soundManager.OnWorkingMovementStart(playerNumber);
+        //     }
+        //     if (!grounding.grounded){
+        //         if(!fixedMoveSoundOn){
+        //         soundManager.OnWorkingMovementStop(playerNumber);
+        //         fixedMoveSoundOn = false;
+        //         //Debug.Log("Flying off");
+        //         }
+        //     }
+        // } else {
+        //     if (fixedMoveSoundOn && grounding.grounded) {
+        //         fixedMoveSoundOn = false;
+        //         soundManager.OnWorkingMovementStop(playerNumber);
+        //         Debug.Log("Stopped off");
+        //     }
+        // }
+        // New logic
         if (Math.Abs(rb.velocity.x) > 0.0f) {
             if (!fixedMoveSoundOn && grounding.grounded) {
                 fixedMoveSoundOn = true;
-                Debug.Log("turning sound ONNNNN");
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
-            if (!grounding.grounded){
-                if(!fixedMoveSoundOn){
-                soundManager.OnWorkingMovementStop(playerNumber);
+            if (fixedMoveSoundOn && !grounding.grounded) {
                 fixedMoveSoundOn = false;
-                Debug.Log("Flying off");
-                }
-                
+                soundManager.OnWorkingMovementStop(playerNumber);
             }
         } else {
-            if (fixedMoveSoundOn && grounding.grounded) {
+            if (fixedMoveSoundOn) {
                 fixedMoveSoundOn = false;
                 soundManager.OnWorkingMovementStop(playerNumber);
-                Debug.Log("Stopped off");
             }
         }
         move();
