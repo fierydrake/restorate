@@ -25,7 +25,6 @@ public class Movement : MonoBehaviour {
     private bool holdingKey = false;
 
     void Start() {
-        rb.drag = 0.1f;
     }
 
     // Update is called once per frame
