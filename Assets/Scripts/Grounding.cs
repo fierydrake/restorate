@@ -14,7 +14,6 @@ public class Grounding : MonoBehaviour
     if (other.tag == "Ground"){
             groundingCount++;
         }
-        
     }
 
     void OnTriggerExit2D(Collider2D other){
@@ -22,5 +21,4 @@ public class Grounding : MonoBehaviour
             groundingCount--;
         }
     }
-
 }

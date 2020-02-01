@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public float thrust = 1.0f;
+    public float thrust = 400.0f;
     public Rigidbody2D rb;
-    public Collider2D oc;
     private bool doJump = false;
     public bool fixJump = true;
     public float randomJumpAngleRange = 45;
@@ -28,7 +27,6 @@ public class Jump : MonoBehaviour
                 // Debug.DrawLine(transform.position, transform.position + 5 * randomDownVector);
                 rb.AddForce(-vectorCalc() * thrust);
             }
-            
         }
         doJump = false;
     }
