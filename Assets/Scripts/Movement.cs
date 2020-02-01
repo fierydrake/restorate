@@ -14,9 +14,13 @@ public class Movement : MonoBehaviour {
     public string leftKey;
     public string rightKey;
 
-    float groundThrust = 40.0f;
-    float airThrust = 15.0f;
-    float maxVelocity = 5.0f;
+    // Stutter stats
+    public float minStutterPercent = 0.5f;
+    public float groundThrust = 120.0f;
+    float airThrust = 45.0f;
+
+    // Max speed
+    public float maxVelocity = 3.0f;
 
     private bool moveLeft;
     private bool moveRight;
@@ -67,7 +71,7 @@ public class Movement : MonoBehaviour {
             }
             var thrustMod = moveRight ?  1 : -1;
             changeDirection();
-            rb.AddForce(transform.right * thrust * thrustMod * fixMod);
+            rb.AddForce(transform.right * thrust * thrustMod * fixMod * UnityEngine.Random.Range(minStutterPercent, 1.0f));
             holdingKey = true;
         }
         moveRight = false;
