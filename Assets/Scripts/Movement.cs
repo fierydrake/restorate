@@ -74,7 +74,7 @@ public class Movement : MonoBehaviour {
         moveRight = false;
         moveLeft = false;
         if (brake) {
-            rb.velocity = Vector3.zero;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
