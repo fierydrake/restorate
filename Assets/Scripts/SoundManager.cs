@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    [Header ("Audio Clips")]
+    [Header("Audio Clips")]
     public AudioClip workingMovement;
     public AudioClip movementStartOneshot;
     public AudioClip movementStopOneshot;
@@ -12,7 +12,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip brokenJump;
     public AudioClip workingJump;
 
-    public AudioClip impact;
+    public AudioClip impact1;
+    public AudioClip impact2;
+    public AudioClip impact3;
+    public AudioClip impact4;
 
     public AudioClip repairSound;
     public AudioClip exitLevel;
@@ -64,11 +67,11 @@ public class SoundManager : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            P1_OneShots.PlayOneShot(brokenJump, 0.8f);
+            P1_OneShots.PlayOneShot(brokenJump, 0.5f);
         }
         if (playerNumber == 2)
         {
-            P2_OneShots.PlayOneShot(brokenJump, 0.8f);
+            P2_OneShots.PlayOneShot(brokenJump, 0.5f);
         }
     }
 
@@ -76,11 +79,11 @@ public class SoundManager : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            P1_OneShots.PlayOneShot(workingJump, 0.8f);
+            P1_OneShots.PlayOneShot(workingJump, 0.5f);
         }
         if (playerNumber == 2)
         {
-            P2_OneShots.PlayOneShot(workingJump, 0.8f);
+            P2_OneShots.PlayOneShot(workingJump, 0.5f);
         }
     }
 
@@ -107,13 +110,15 @@ public class SoundManager : MonoBehaviour
 
     public void OnImpact(int playerNumber)
     {
+        AudioClip[] impacts = {impact1, impact2, impact3, impact4};
+
         if (playerNumber == 1)
         {
-            P1_OneShots.PlayOneShot(impact, 0.8f);
+            P1_OneShots.PlayOneShot(impacts[Random.Range(0, impacts.Length)], 0.8f);
         }
         if (playerNumber == 2)
         {
-            P2_OneShots.PlayOneShot(impact, 0.8f);
+            P2_OneShots.PlayOneShot(impacts[Random.Range(0, impacts.Length)], 0.8f);
         }
     }
 }
