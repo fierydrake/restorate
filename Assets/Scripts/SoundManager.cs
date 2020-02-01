@@ -27,6 +27,7 @@ public class SoundManager : MonoBehaviour
 
     //TEMP
     private int playerNumber;
+    //Camera.main.GetComponent<AudioManager>().OnWorkingJump();
 
     void Start()
     {
@@ -38,11 +39,11 @@ public class SoundManager : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            P1_OneShots.PlayOneShot(brokenMovement, 1.3f);
+            P1_OneShots.PlayOneShot(brokenMovement, 1);
         }
         if (playerNumber == 2)
         {
-            P2_OneShots.PlayOneShot(brokenMovement, 1.3f);
+            P2_OneShots.PlayOneShot(brokenMovement, 1);
         }
 
     }
@@ -106,4 +107,13 @@ public class SoundManager : MonoBehaviour
         ExitLevel.PlayOneShot(exitLevel, 1);
     }
 
+    public void MusicStart()
+    {
+        Music.Play();
+    }
+
+    public void MusicStop()
+    {
+        Music.Stop();
+    }
 }
