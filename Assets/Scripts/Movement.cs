@@ -49,6 +49,9 @@ public class Movement : MonoBehaviour {
                 fixedMoveSoundOn = true;
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
+            if (!grounding.grounded){
+                soundManager.OnWorkingMovementStop(playerNumber);
+            }
         } else {
             if (fixedMoveSoundOn || !grounding.grounded) {
                 fixedMoveSoundOn = false;
