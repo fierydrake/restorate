@@ -6,15 +6,16 @@ using System;
 public class Movement : MonoBehaviour {
 
     public bool movementFixed;
-    public bool stutterFixed;
+    public bool stutterFixed = true;
     public Rigidbody2D rb;
 
-    public Collider2D floorCollider;
+    public Grounding grounding;
 
     public string leftKey;
     public string rightKey;
 
-    float thrust = 50.0f;
+    float groundThrust = 40.0f;
+    float airThrust = 15.0f;
     float maxVelocity = 5.0f;
 
     private bool moveLeft;
@@ -22,10 +23,8 @@ public class Movement : MonoBehaviour {
     private bool releaseLeft;
     private bool releaseRight;
     private bool holdingKey = false;
-    private bool isGrounded = false;
 
     void Start() {
-         
     }
 
     // Update is called once per frame
@@ -34,6 +33,7 @@ public class Movement : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxVelocity, maxVelocity), rb.velocity.y);
         move();
     }
 
@@ -41,22 +41,30 @@ public class Movement : MonoBehaviour {
     void move() {
         // If movement is not fixed invert movement
         int fixMod = movementFixed ? 1 : -1;
-        bool brake = (releaseLeft || releaseRight || !Input.anyKey) && isGrounded;
+        float thrust = grounding.grounded ? groundThrust : airThrust;
+        bool brake = (releaseLeft || releaseRight || !Input.anyKey) && grounding.grounded;
 
         if (checkStutter() && (moveRight || moveLeft) && !brake) {
             var thrustMod = moveRight ?  1 : -1;
-            if (rb.velocity.magnitude < maxVelocity) {
-                rb.AddForce(transform.right * thrust * thrustMod * fixMod);
-            }
-            moveRight = false;
-            moveLeft = false;
+            changeDirection();
+            rb.AddForce(transform.right * thrust * thrustMod * fixMod);
             holdingKey = true;
         }
-
+        moveRight = false;
+        moveLeft = false;
         if (brake) {
             rb.velocity = Vector3.zero;
         }
-        
+    }
+
+    void changeDirection() {
+        string newDirection = moveRight? "right" : "left";
+        string travellingDirection = rb.velocity.x > 0 ? "right" : "left";
+
+        if (newDirection != travellingDirection) {
+            Debug.Log("Chaning Direction");
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
     }
 
     bool checkStutter() {
@@ -72,15 +80,6 @@ public class Movement : MonoBehaviour {
         if (releaseRight || releaseLeft) {
             holdingKey = false;
         }
-    }
-
-    void OnTriggerEnter2D() {
-        Debug.Log("ON FLOOR");
-        isGrounded = true;
-    }
-    void OnTriggerExit2D(){
-        Debug.Log("LEAVING FLOOR");
-        isGrounded = false;
     }
 
 }
