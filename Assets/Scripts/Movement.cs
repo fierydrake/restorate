@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour {
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
         } else {
-            if (fixedMoveSoundOn) {
+            if (fixedMoveSoundOn || !grounding.grounded) {
                 fixedMoveSoundOn = false;
                 soundManager.OnWorkingMovementStop(playerNumber);
             }
