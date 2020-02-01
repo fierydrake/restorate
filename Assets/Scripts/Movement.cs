@@ -58,8 +58,11 @@ public class Movement : MonoBehaviour {
     }
 
     void changeDirection() {
-        string newDirection = moveRight? "right" : "left";
-        string travellingDirection = rb.velocity.x > 0 ? "right" : "left";
+        // -1 is left, 1 is right
+        int invertBroken = movementFixed ? 1 : -1;
+
+        int newDirection = moveRight ? 1 : -1;
+        int travellingDirection = rb.velocity.x >= 0 ? 1*invertBroken : -1*invertBroken;
 
         if (newDirection != travellingDirection) {
             rb.velocity = new Vector2(0, rb.velocity.y);
