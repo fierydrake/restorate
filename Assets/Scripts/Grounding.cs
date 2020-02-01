@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public class Grounding : MonoBehaviour
 {
     public string groundTag;

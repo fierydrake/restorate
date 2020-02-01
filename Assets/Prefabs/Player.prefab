@@ -42,7 +42,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: fbca7979666414f3ea5ff475502e1d2e,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2d3e0bc9d75b14a188ae06be134dc30d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 6463078191623435122}
   - component: {fileID: 6463078191623435135}
   - component: {fileID: 6463078191623435132}
+  - component: {fileID: 7608349509095161349}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -338,12 +339,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194761a85c09b4122a93679523e13480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementFixed: 1
-  stutterFixed: 1
+  movementFixed: 0
+  stutterFixed: 0
   rb: {fileID: 6463078191623435121}
-  grounding: {fileID: 0}
+  grounding: {fileID: 6463078191623435135}
   leftKey: a
   rightKey: d
+  minStutterPercent: 0.4
+  groundThrust: 120
+  maxVelocity: 5
 --- !u!61 &6463078191623435122
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -382,6 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a981200964146431f8ade1c96ed643af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundTag: Ground
+  personTag: Player
 --- !u!114 &6463078191623435132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,12 +400,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6b4d6e95e2343b184b3d573d27c508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 400
+  flux: 1
+  flat: 1
+  thrust: 200
+  randomJumpAngleRange: 10
   rb: {fileID: 6463078191623435121}
-  fixJump: 1
-  randomJumpAngleRange: 45
-  jump: w
   grounding: {fileID: 6463078191623435135}
+  fixJump: 0
+  jump: w
+--- !u!114 &7608349509095161349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463078191623435126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f58eed0296047178ffc25bd3de66f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTag: Ground
+  wallTag: Wall
+  personTag: Player
 --- !u!1 &8477453270214103945
 GameObject:
   m_ObjectHideFlags: 0
