@@ -5,7 +5,6 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [Header ("Audio Clips")]
-    public AudioClip brokenMovement;
     public AudioClip workingMovement;
     public AudioClip movementStartOneshot;
     public AudioClip movementStopOneshot;
@@ -17,8 +16,6 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip repairSound;
     public AudioClip exitLevel;
-
-    public AudioClip music;
 
     [Header("Audio Sources")]
     public AudioSource P1_Movement;
@@ -32,19 +29,6 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         MusicStart();
-    }
-
-    public void OnBrokenMovement(int playerNumber)
-    {
-        if (playerNumber == 1)
-        {
-            P1_OneShots.PlayOneShot(brokenMovement, 0.7f);
-        }
-        if (playerNumber == 2)
-        {
-            P2_OneShots.PlayOneShot(brokenMovement, 0.7f);
-        }
-
     }
 
     public void OnWorkingMovementStart(int playerNumber)
