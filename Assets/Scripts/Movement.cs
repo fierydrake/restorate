@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour {
 
     public string leftKey;
     public string rightKey;
+    public int playerNumber;
 
     float groundThrust = 40.0f;
     float airThrust = 15.0f;
@@ -23,8 +24,11 @@ public class Movement : MonoBehaviour {
     private bool releaseLeft;
     private bool releaseRight;
     private bool holdingKey = false;
+    private SoundManager soundManager;
+    private bool fixedMoveSoundOn = false;
 
     void Start() {
+        soundManager = Camera.main.GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,17 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate() {
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxVelocity, maxVelocity), rb.velocity.y);
+        if (Math.Abs(rb.velocity.x) > 0.0f) {
+            if (!fixedMoveSoundOn && stutterFixed) {
+                fixedMoveSoundOn = true;
+                soundManager.OnWorkingMovementStart(playerNumber);
+            }
+        } else {
+            if (fixedMoveSoundOn && stutterFixed) {
+                fixedMoveSoundOn = false;
+                soundManager.OnWorkingMovementStop(playerNumber);
+            }
+        }
         move();
     }
 
@@ -45,6 +60,9 @@ public class Movement : MonoBehaviour {
         bool brake = (releaseLeft || releaseRight || !Input.anyKey) && grounding.grounded;
 
         if (checkStutter() && (moveRight || moveLeft) && !brake) {
+            if (!stutterFixed) {
+                soundManager.OnBrokenMovement(playerNumber);
+            }
             var thrustMod = moveRight ?  1 : -1;
             changeDirection();
             rb.AddForce(transform.right * thrust * thrustMod * fixMod);
