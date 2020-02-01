@@ -7,9 +7,13 @@ public class SoundManager : MonoBehaviour
     [Header ("Audio Clips")]
     public AudioClip brokenMovement;
     public AudioClip workingMovement;
+    public AudioClip movementStartOneshot;
+    public AudioClip movementStopOneshot;
 
     public AudioClip brokenJump;
     public AudioClip workingJump;
+
+    public AudioClip impact;
 
     public AudioClip repairSound;
     public AudioClip exitLevel;
@@ -25,15 +29,20 @@ public class SoundManager : MonoBehaviour
     public AudioSource RepairStation;
     public AudioSource Music;
 
+    void Start()
+    {
+        MusicStart();
+    }
+
     public void OnBrokenMovement(int playerNumber)
     {
         if (playerNumber == 1)
         {
-            P1_OneShots.PlayOneShot(brokenMovement, 1);
+            P1_OneShots.PlayOneShot(brokenMovement, 0.7f);
         }
         if (playerNumber == 2)
         {
-            P2_OneShots.PlayOneShot(brokenMovement, 1);
+            P2_OneShots.PlayOneShot(brokenMovement, 0.7f);
         }
 
     }
@@ -43,10 +52,12 @@ public class SoundManager : MonoBehaviour
         if (playerNumber == 1)
         {
             P1_Movement.Play();
+            P1_OneShots.PlayOneShot(movementStartOneshot, 0.3f);
         }
         if (playerNumber == 2)
         {
             P2_Movement.Play();
+            P2_OneShots.PlayOneShot(movementStartOneshot, 0.3f);
         }
     }
 
@@ -55,10 +66,12 @@ public class SoundManager : MonoBehaviour
         if (playerNumber == 1)
         {
             P1_Movement.Stop();
+            P1_OneShots.PlayOneShot(movementStopOneshot, 0.3f);
         }
         if (playerNumber == 2)
         {
             P2_Movement.Stop();
+            P2_OneShots.PlayOneShot(movementStopOneshot, 0.3f);
         }
     }
 
@@ -67,11 +80,11 @@ public class SoundManager : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            P1_OneShots.PlayOneShot(brokenJump, 1);
+            P1_OneShots.PlayOneShot(brokenJump, 0.8f);
         }
         if (playerNumber == 2)
         {
-            P2_OneShots.PlayOneShot(brokenJump, 1);
+            P2_OneShots.PlayOneShot(brokenJump, 0.8f);
         }
     }
 
@@ -79,22 +92,23 @@ public class SoundManager : MonoBehaviour
     {
         if (playerNumber == 1)
         {
-            P1_OneShots.PlayOneShot(workingJump, 1);
+            P1_OneShots.PlayOneShot(workingJump, 0.8f);
         }
         if (playerNumber == 2)
         {
-            P2_OneShots.PlayOneShot(workingJump, 1);
+            P2_OneShots.PlayOneShot(workingJump, 0.8f);
         }
     }
 
     public void OnRepair()
     {
-        RepairStation.PlayOneShot(repairSound, 1);
+        RepairStation.PlayOneShot(repairSound, 0.7f);
     }
 
     public void OnExitLevel()
     {
-        ExitLevel.PlayOneShot(exitLevel, 1);
+        ExitLevel.PlayOneShot(exitLevel, 0.5f);
+        MusicStop();
     }
 
     public void MusicStart()
@@ -105,5 +119,17 @@ public class SoundManager : MonoBehaviour
     public void MusicStop()
     {
         Music.Stop();
+    }
+
+    public void OnImpact(int playerNumber)
+    {
+        if (playerNumber == 1)
+        {
+            P1_OneShots.PlayOneShot(impact, 0.8f);
+        }
+        if (playerNumber == 2)
+        {
+            P2_OneShots.PlayOneShot(impact, 0.8f);
+        }
     }
 }
