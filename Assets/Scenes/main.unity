@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 360822957}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 453887159}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -974,7 +974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935453352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.77, y: 1, z: 0}
+  m_LocalPosition: {x: 4.77, y: 1.204, z: 0}
   m_LocalScale: {x: 1, y: 1.4, z: 1}
   m_Children: []
   m_Father: {fileID: 904596156}
@@ -1309,6 +1309,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6463078191623435126, guid: 9d7005a7d646f4545ab4ba799ff356b9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6463078191623435132, guid: 9d7005a7d646f4545ab4ba799ff356b9,
         type: 3}
       propertyPath: jump
@@ -1328,6 +1333,16 @@ PrefabInstance:
         type: 3}
       propertyPath: rightKey
       value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463078191623435135, guid: 9d7005a7d646f4545ab4ba799ff356b9,
+        type: 3}
+      propertyPath: groundTag
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463078191623435135, guid: 9d7005a7d646f4545ab4ba799ff356b9,
+        type: 3}
+      propertyPath: personTag
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d7005a7d646f4545ab4ba799ff356b9, type: 3}
@@ -1532,7 +1547,7 @@ GameObject:
   - component: {fileID: 1660136936}
   m_Layer: 0
   m_Name: Platform (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1801,11 +1816,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6463078191623435126, guid: 9d7005a7d646f4545ab4ba799ff356b9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6463078191623435133, guid: 9d7005a7d646f4545ab4ba799ff356b9,
         type: 3}
       propertyPath: grounding
       value: 
       objectReference: {fileID: 177506858}
+    - target: {fileID: 6463078191623435135, guid: 9d7005a7d646f4545ab4ba799ff356b9,
+        type: 3}
+      propertyPath: groundTag
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463078191623435135, guid: 9d7005a7d646f4545ab4ba799ff356b9,
+        type: 3}
+      propertyPath: personTag
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d7005a7d646f4545ab4ba799ff356b9, type: 3}
 --- !u!82 &6463078191733766486 stripped
