@@ -6,25 +6,16 @@ using UnityEngine.UI;
 public class Win : MonoBehaviour {
 
 
-    public string player1Tag = "Player1";
-    public string player2Tag = "Player2";
-    public string winCanvasTag = "WinCanvas";
+    public Rigidbody2D player1;
+    public Rigidbody2D player2;
 
-    private Rigidbody2D player1;
-    private Rigidbody2D player2;
-
-    private Text winText;
+    public Text winText;
 
     void Start() {
-        player1 = GameObject.FindWithTag(player1Tag).GetComponent<Rigidbody2D> ();
-        player2 = GameObject.FindWithTag(player2Tag).GetComponent<Rigidbody2D> ();
-
-        winText = GameObject.FindWithTag(winCanvasTag).GetComponent<Text> ();
         winText.gameObject.SetActive(false);
     }
     void OnTriggerEnter2D(Collider2D col) {
-        string tag = col.gameObject.tag;
-        if ( tag == player1Tag || tag == player2Tag) {
+        if ( col.gameObject == player1.gameObject || col.gameObject == player2.gameObject ) {
             winText.gameObject.SetActive(true);
             Destroy(player1.gameObject);
             Destroy(player2.gameObject);

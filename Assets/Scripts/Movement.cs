@@ -62,7 +62,6 @@ public class Movement : MonoBehaviour {
         string travellingDirection = rb.velocity.x > 0 ? "right" : "left";
 
         if (newDirection != travellingDirection) {
-            Debug.Log("Chaning Direction");
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
