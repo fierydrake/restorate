@@ -25,16 +25,6 @@ public class SoundManager : MonoBehaviour
     public AudioSource RepairStation;
     public AudioSource Music;
 
-    //TEMP
-    private int playerNumber;
-    //Camera.main.GetComponent<AudioManager>().OnWorkingJump();
-
-    void Start()
-    {
-        playerNumber = 1;
-    }
-
-
     public void OnBrokenMovement(int playerNumber)
     {
         if (playerNumber == 1)

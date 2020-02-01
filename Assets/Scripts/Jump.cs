@@ -12,6 +12,14 @@ public class Jump : MonoBehaviour
     public string jump;
     public Grounding grounding;
 
+    private SoundManager sound;
+    private int playerNumber;
+
+    void Start() {
+        sound = Camera.main.GetComponent<SoundManager>();
+        playerNumber = GetComponent<PlayerNumber>().playerNumber;
+    }
+
     void Update() {
         if (Input.GetKeyDown(jump)) {
             doJump = true;
@@ -23,9 +31,11 @@ public class Jump : MonoBehaviour
         if (doJump & grounding.grounded) {
             if (fixJump) {
                 rb.AddForce(transform.up * thrust);
+                sound.OnWorkingJump(playerNumber);
             } else {
                 // Debug.DrawLine(transform.position, transform.position + 5 * randomDownVector);
                 rb.AddForce(-vectorCalc() * thrust);
+                sound.OnBrokenJump(playerNumber);
             }
         }
         doJump = false;
