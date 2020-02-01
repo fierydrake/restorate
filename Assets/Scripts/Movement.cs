@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour {
     void FixedUpdate() {
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxVelocity, maxVelocity), rb.velocity.y);
         if (Math.Abs(rb.velocity.x) > 0.0f) {
-            if (!fixedMoveSoundOn) {
+            if (!fixedMoveSoundOn && grounding.grounded) {
                 fixedMoveSoundOn = true;
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
