@@ -20,7 +20,7 @@ public class Movement : MonoBehaviour {
     float airThrust = 45.0f;
 
     // Max speed
-    public float maxVelocity = 3.0f;
+    public float maxVelocity = 4.0f;
 
     private bool moveLeft;
     private bool moveRight;
@@ -45,12 +45,12 @@ public class Movement : MonoBehaviour {
     void FixedUpdate() {
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxVelocity, maxVelocity), rb.velocity.y);
         if (Math.Abs(rb.velocity.x) > 0.0f) {
-            if (!fixedMoveSoundOn && stutterFixed) {
+            if (!fixedMoveSoundOn) {
                 fixedMoveSoundOn = true;
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
         } else {
-            if (fixedMoveSoundOn && stutterFixed) {
+            if (fixedMoveSoundOn) {
                 fixedMoveSoundOn = false;
                 soundManager.OnWorkingMovementStop(playerNumber);
             }
@@ -66,9 +66,6 @@ public class Movement : MonoBehaviour {
         bool brake = (releaseLeft || releaseRight || !Input.anyKey) && grounding.grounded;
 
         if (checkStutter() && (moveRight || moveLeft) && !brake) {
-            if (!stutterFixed) {
-                soundManager.OnBrokenMovement(playerNumber);
-            }
             var thrustMod = moveRight ?  1 : -1;
             changeDirection();
             rb.AddForce(transform.right * thrust * thrustMod * fixMod * UnityEngine.Random.Range(minStutterPercent, 1.0f));
