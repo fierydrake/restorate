@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public float thrust = 400.0f;
+
+    // Jump controls
+    public float flux = 0.8f; // minMax range of the broken jump
+    public float flat = 0.4f; // Max range of the broken jump
+    public float thrust = 250.0f;
+    public float randomJumpAngleRange = 55;
+
+    // player
     public Rigidbody2D rb;
-    private bool doJump = false;
-    public bool fixJump = true;
-    public float randomJumpAngleRange = 45;
-    public string jump;
     public Grounding grounding;
 
+    // user
+    private bool doJump = false;
+    public bool fixJump = false;
+    public string jump;
+
+    // sound reqs
     private SoundManager sound;
     private int playerNumber;
 
@@ -34,7 +43,7 @@ public class Jump : MonoBehaviour
                 sound.OnWorkingJump(playerNumber);
             } else {
                 // Debug.DrawLine(transform.position, transform.position + 5 * randomDownVector);
-                rb.AddForce(-vectorCalc() * thrust);
+                rb.AddForce(-vectorCalc() * thrust * Random.Range(flat, flux));
                 sound.OnBrokenJump(playerNumber);
             }
         }

@@ -14,9 +14,13 @@ public class Movement : MonoBehaviour {
     public string leftKey;
     public string rightKey;
 
-    float groundThrust = 40.0f;
-    float airThrust = 15.0f;
-    float maxVelocity = 5.0f;
+    // Stutter stats
+    public float minStutterPercent = 0.5f;
+    public float groundThrust = 120.0f;
+    float airThrust = 45.0f;
+
+    // Max speed
+    public float maxVelocity = 4.0f;
 
     private bool moveLeft;
     private bool moveRight;
@@ -40,13 +44,40 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate() {
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxVelocity, maxVelocity), rb.velocity.y);
+
+        // // old logic
+        // if (Math.Abs(rb.velocity.x) > 0.0f) {
+        //     if (!fixedMoveSoundOn && grounding.grounded) {
+        //         fixedMoveSoundOn = true;
+        //         Debug.Log("turning sound ONNNNN");
+        //         soundManager.OnWorkingMovementStart(playerNumber);
+        //     }
+        //     if (!grounding.grounded){
+        //         if(!fixedMoveSoundOn){
+        //         soundManager.OnWorkingMovementStop(playerNumber);
+        //         fixedMoveSoundOn = false;
+        //         //Debug.Log("Flying off");
+        //         }
+        //     }
+        // } else {
+        //     if (fixedMoveSoundOn && grounding.grounded) {
+        //         fixedMoveSoundOn = false;
+        //         soundManager.OnWorkingMovementStop(playerNumber);
+        //         Debug.Log("Stopped off");
+        //     }
+        // }
+        // New logic
         if (Math.Abs(rb.velocity.x) > 0.0f) {
-            if (!fixedMoveSoundOn && stutterFixed) {
+            if (!fixedMoveSoundOn && grounding.grounded) {
                 fixedMoveSoundOn = true;
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
+            if (fixedMoveSoundOn && !grounding.grounded) {
+                fixedMoveSoundOn = false;
+                soundManager.OnWorkingMovementStop(playerNumber);
+            }
         } else {
-            if (fixedMoveSoundOn && stutterFixed) {
+            if (fixedMoveSoundOn) {
                 fixedMoveSoundOn = false;
                 soundManager.OnWorkingMovementStop(playerNumber);
             }
@@ -62,18 +93,15 @@ public class Movement : MonoBehaviour {
         bool brake = (releaseLeft || releaseRight || !Input.anyKey) && grounding.grounded;
 
         if (checkStutter() && (moveRight || moveLeft) && !brake) {
-            if (!stutterFixed) {
-                soundManager.OnBrokenMovement(playerNumber);
-            }
             var thrustMod = moveRight ?  1 : -1;
             changeDirection();
-            rb.AddForce(transform.right * thrust * thrustMod * fixMod);
+            rb.AddForce(transform.right * thrust * thrustMod * fixMod * UnityEngine.Random.Range(minStutterPercent, 1.0f));
             holdingKey = true;
         }
         moveRight = false;
         moveLeft = false;
         if (brake) {
-            rb.velocity = Vector3.zero;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
