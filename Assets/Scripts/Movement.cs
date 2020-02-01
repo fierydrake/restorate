@@ -51,12 +51,15 @@ public class Movement : MonoBehaviour {
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
             if (!grounding.grounded){
+                if(!fixedMoveSoundOn){
                 soundManager.OnWorkingMovementStop(playerNumber);
                 fixedMoveSoundOn = false;
                 Debug.Log("Flying off");
+                }
+                
             }
         } else {
-            if (fixedMoveSoundOn || !grounding.grounded) {
+            if (fixedMoveSoundOn && grounding.grounded) {
                 fixedMoveSoundOn = false;
                 soundManager.OnWorkingMovementStop(playerNumber);
                 Debug.Log("Stopped off");
