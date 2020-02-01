@@ -13,7 +13,6 @@ public class Movement : MonoBehaviour {
 
     public string leftKey;
     public string rightKey;
-    public int playerNumber;
 
     float groundThrust = 40.0f;
     float airThrust = 15.0f;
@@ -26,9 +25,12 @@ public class Movement : MonoBehaviour {
     private bool holdingKey = false;
     private SoundManager soundManager;
     private bool fixedMoveSoundOn = false;
+    private int playerNumber;
+
 
     void Start() {
         soundManager = Camera.main.GetComponent<SoundManager>();
+        playerNumber = GetComponent<PlayerNumber>().playerNumber;
     }
 
     // Update is called once per frame
