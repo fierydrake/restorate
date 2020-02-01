@@ -47,15 +47,19 @@ public class Movement : MonoBehaviour {
         if (Math.Abs(rb.velocity.x) > 0.0f) {
             if (!fixedMoveSoundOn && grounding.grounded) {
                 fixedMoveSoundOn = true;
+                Debug.Log("turning sound ONNNNN");
                 soundManager.OnWorkingMovementStart(playerNumber);
             }
             if (!grounding.grounded){
                 soundManager.OnWorkingMovementStop(playerNumber);
+                fixedMoveSoundOn = false;
+                Debug.Log("Flying off");
             }
         } else {
             if (fixedMoveSoundOn || !grounding.grounded) {
                 fixedMoveSoundOn = false;
                 soundManager.OnWorkingMovementStop(playerNumber);
+                Debug.Log("Stopped off");
             }
         }
         move();
