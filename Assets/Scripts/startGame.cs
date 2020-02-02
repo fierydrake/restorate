@@ -15,7 +15,7 @@ public class startGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp("g")){
+        if (Input.GetKeyUp("enter")||Input.GetKeyUp("return")){
             // Only specifying the sceneName or sceneBuildIndex will load the Scene with the Single mode
             Debug.Log("enter pressed");
             SceneManager.LoadScene("main", LoadSceneMode.Single);
