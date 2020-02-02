@@ -15,7 +15,7 @@ public class Reset : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        resetPressed = Input.GetKey(resetKey);
+        // resetPressed = Input.GetKey(resetKey);
     }
 
     void FixedUpdate() {
