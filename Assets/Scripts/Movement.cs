@@ -44,10 +44,15 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate() {
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x,-maxVelocity, maxVelocity), rb.velocity.y);
+
         if (Math.Abs(rb.velocity.x) > 0.0f) {
             if (!fixedMoveSoundOn && grounding.grounded) {
                 fixedMoveSoundOn = true;
                 soundManager.OnWorkingMovementStart(playerNumber);
+            }
+            if (fixedMoveSoundOn && !grounding.grounded) {
+                fixedMoveSoundOn = false;
+                soundManager.OnWorkingMovementStop(playerNumber);
             }
         } else {
             if (fixedMoveSoundOn) {
@@ -57,7 +62,6 @@ public class Movement : MonoBehaviour {
         }
         move();
     }
-
 
     void move() {
         // If movement is not fixed invert movement

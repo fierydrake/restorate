@@ -16,8 +16,8 @@ public class WallCollision : MonoBehaviour
         playerNumber = GetComponent<PlayerNumber>().playerNumber;
     }
 
-    void OnCollisionEnter2D(Collider2D other) {
-    if (other.tag == groundTag || other.tag == wallTag || other.tag == personTag){
+    void OnCollisionEnter2D(Collision2D collision) {
+    if (collision.gameObject.tag == groundTag || collision.gameObject.tag == wallTag || collision.gameObject.tag == personTag){
             soundManager.OnImpact(playerNumber);
         }
     }

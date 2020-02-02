@@ -7,7 +7,6 @@ public class Grounding : MonoBehaviour
 {
     public string groundTag;
     public string personTag;
-    // public string rightKey;
     private int groundingCount = 0;
 
     public bool grounded {
