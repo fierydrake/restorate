@@ -35,7 +35,7 @@ public class Win : MonoBehaviour {
         if ((Input.GetKeyDown("enter") || Input.GetKeyDown("return")) && isWin){
             // Only specifying the sceneName or sceneBuildIndex will load the Scene with the Single mode
             Debug.Log("enter pressed");
-            Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene("splashscreen", LoadSceneMode.Single);
             Debug.Log("main loaded");
         }
     }
