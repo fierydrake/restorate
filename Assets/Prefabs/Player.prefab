@@ -346,7 +346,7 @@ MonoBehaviour:
   leftKey: a
   rightKey: d
   minStutterPercent: 0.4
-  groundThrust: 120
+  groundThrust: 40
   maxVelocity: 3
 --- !u!61 &6463078191623435122
 BoxCollider2D:
@@ -361,7 +361,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.31}
+  m_Offset: {x: 0.00000023841858, y: -0.31}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -372,7 +372,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.34, y: 0.06}
+  m_Size: {x: 0.49228907, y: 0.060000002}
   m_EdgeRadius: 0
 --- !u!114 &6463078191623435135
 MonoBehaviour:

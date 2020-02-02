@@ -16,11 +16,11 @@ public class Movement : MonoBehaviour {
 
     // Stutter stats
     public float minStutterPercent = 0.5f;
-    public float groundThrust = 120.0f;
-    float airThrust = 45.0f;
+    public float groundThrust = 50.0f;
+    float airThrust = 10.0f;
 
     // Max speed
-    public float maxVelocity = 4.0f;
+    public float maxVelocity = 3.0f;
 
     private bool moveLeft;
     private bool moveRight;
@@ -68,11 +68,13 @@ public class Movement : MonoBehaviour {
         int fixMod = movementFixed ? 1 : -1;
         float thrust = grounding.grounded ? groundThrust : airThrust;
         bool brake = !Input.GetKey(rightKey) && !Input.GetKey(leftKey) && grounding.grounded;
+        float stutterMod = stutterFixed ? 1 :  UnityEngine.Random.Range(minStutterPercent, 1.0f)*5;
 
         if (checkStutter() && (moveRight || moveLeft) && !brake) {
             var thrustMod = moveRight ?  1 : -1;
             changeDirection();
-            rb.AddForce(transform.right * thrust * thrustMod * fixMod * UnityEngine.Random.Range(minStutterPercent, 1.0f));
+            
+            rb.AddForce(transform.right * thrust * thrustMod * fixMod * stutterMod);
             holdingKey = true;
         }
         moveRight = false;
