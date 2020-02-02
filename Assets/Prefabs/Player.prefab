@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personTag: Player
-  magnitude: 500
+  magnitude: 100
   rb: {fileID: 6463078191623435121}
 --- !u!1 &8477453270214103945
 GameObject:
