@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 420881409}
   - component: {fileID: 420881408}
   m_Layer: 0
-  m_Name: Music
+  m_Name: SplashMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,8 +457,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: fbca7979666414f3ea5ff475502e1d2e,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8dc6bcc2184614bb4bbdd1f22db44680, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 54a0e3089921f4c9e9f2858d9cbb5f50, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
