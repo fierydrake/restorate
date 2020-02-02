@@ -22,7 +22,7 @@ public class playerCollision : MonoBehaviour
             var force = transform.position - collision.transform.position;
  
             force.Normalize();
-            rb.AddForce(-force * magnitude);
+            rb.AddForce(force * magnitude);
         }
     }
 }
