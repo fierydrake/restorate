@@ -604,7 +604,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420881407}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: fbca7979666414f3ea5ff475502e1d2e,
     type: 2}
@@ -4602,10 +4602,10 @@ MonoBehaviour:
   movementStopOneshot: {fileID: 8300000, guid: 02390c287012744458047b57ba281abb, type: 3}
   brokenJump: {fileID: 8300000, guid: 34834a5e1fb434153a990f29116749dd, type: 3}
   workingJump: {fileID: 8300000, guid: fd1f75277c76c412189cbf5c99cfff52, type: 3}
-  impact1: {fileID: 0}
-  impact2: {fileID: 0}
-  impact3: {fileID: 0}
-  impact4: {fileID: 0}
+  impact1: {fileID: 8300000, guid: 02a92183448f34572bbe841db8509edc, type: 3}
+  impact2: {fileID: 8300000, guid: 6e7f7f6d1cec747f780ece39e31132ef, type: 3}
+  impact3: {fileID: 8300000, guid: 738e768d9b18f4a019662fa989503252, type: 3}
+  impact4: {fileID: 8300000, guid: ef2cc640ba311486d87cafec7c32b840, type: 3}
   repairSound: {fileID: 8300000, guid: 019d12e872ae142eb839249e61ea3a7e, type: 3}
   exitLevel: {fileID: 8300000, guid: 35a13cb95f98147d28c2cd24e1862e86, type: 3}
   P1_Movement: {fileID: 6463078191733766486}
