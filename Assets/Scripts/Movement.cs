@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour {
         // If movement is not fixed invert movement
         int fixMod = movementFixed ? 1 : -1;
         float thrust = grounding.grounded ? groundThrust : airThrust;
-        bool brake = (releaseLeft || releaseRight || !Input.anyKey) && grounding.grounded;
+        bool brake = !Input.GetKey(rightKey) && !Input.GetKey(leftKey) && grounding.grounded;
 
         if (checkStutter() && (moveRight || moveLeft) && !brake) {
             var thrustMod = moveRight ?  1 : -1;
