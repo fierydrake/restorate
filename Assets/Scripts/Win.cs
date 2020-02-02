@@ -11,13 +11,19 @@ public class Win : MonoBehaviour {
     public Rigidbody2D player2;
 
     public Text winText;
+    public Text loseText;
+    public Text timerBox;
 
     private SoundManager sound;
 
-    private bool isWin = false; 
+    public float timeLeft = 10;
+    private bool gameOver = false;
+
+    
 
     void Start() {
         winText.gameObject.SetActive(false);
+        loseText.gameObject.SetActive(false);
         sound = Camera.main.GetComponent<SoundManager>();
     }
 
@@ -27,16 +33,29 @@ public class Win : MonoBehaviour {
             winText.gameObject.SetActive(true);
             Destroy(player1.gameObject);
             Destroy(player2.gameObject);
-            isWin = true;
+            gameOver = true;
         }
     }
     void Update(){
 
-        if ((Input.GetKeyDown("enter") || Input.GetKeyDown("return")) && isWin){
+        if ((Input.GetKeyDown("enter") || Input.GetKeyDown("return")) && gameOver){
             // Only specifying the sceneName or sceneBuildIndex will load the Scene with the Single mode
             Debug.Log("enter pressed");
             SceneManager.LoadScene("splashscreen", LoadSceneMode.Single);
             Debug.Log("main loaded");
+        }
+
+        timeLeft -= Time.deltaTime;
+        if (timeLeft > 0 ){
+            timerBox.text = timeLeft.ToString("0.00");
+        }
+        if(timeLeft < 0)
+        {
+            sound.OnExitLevel();
+            loseText.gameObject.SetActive(true);
+            Destroy(player1.gameObject);
+            Destroy(player2.gameObject);
+            gameOver = true;
         }
     }
 }
